@@ -43,8 +43,18 @@ circles (x,y,z)
     | otherwise = '*'
         where p = div z 2  --- center point of circles (x & y same values becuase squared canvas)
 
+circle :: (Int, Int, Int) -> Char
+circle (x,y,z)
+    | (x-p)^2+(y-p)^2 > ((div ((div z 3)*2) 2)-1)^2 && x-y>=0 && z-x-y>0 = '#'
+    | (x-p)^2+(y-p)^2 > ((div ((div z 3)*2) 2)-1)^2 && x+y-z>0 && y>=x  = '#'
+    | (x-p)^2+(y-p)^2 > ((div ((div z 3)*2) 2)-1)^2 && y-x>=0 = '.'
+    | (x-p)^2+(y-p)^2 > ((div ((div z 3)*2) 2)-1)^2 && z-y-x<=0 = '.'
+    | otherwise = ' '
+        where p = div z 2
+
 
 
 {- Testbeispiele -}
 
 test5 = paintChars circles 60
+test6 = paintChars circle 60
