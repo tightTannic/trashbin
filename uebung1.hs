@@ -1,26 +1,4 @@
-{- 
-  Aufgabe 1
--}
-
-isParenthesis :: Char -> Bool
-isParenthesis c = if (c=='[')||(c==']')||(c=='(')||(c==')')||(c=='{')||(c=='}') then True else False
-
-leap_year :: Int -> Bool
-leap_year y = (mod y 400 == 0) || (not ((mod y 100 == 0) && (not (mod y 400 == 0)))) || ((mod y 4 == 0) && (not (mod y 100 == 0)))
-{-  immer True :( -}
-
-{-
-weekDay :: Int -> Int -> Int -> Int
-weekDay day month year
-| leap_year year
-           where
-                month==2 || day>28 = "Achtung. Schaltjahr" 
-| year < 0 = show(year) ++ "illegal year value"
-| month < 1 || month > 12 = show(month) ++ "illegal month value"
--}
-
-
-
+--- der ganze Zeichenscheiß
 
 {--
     Funktionale Programmierung, U2, 2019/2020
@@ -57,21 +35,16 @@ rectangles (x,y,z)
     | div z 4 * 3 >= x && div z 2 < y = '8'
     | div z 4 * 3 <= x && div z 4 * 3 < y = '|'
     | otherwise = ' '
-    
+
 circles :: (Int, Int, Int) -> Char
 circles (x,y,z)
-    | (x-p)^2+(y-p)^2 < (p-1)^2  = ' '         --- Äußerer Kreis, Subtraktion von p für den Rand um den Kreis
-    --- | (x-p)^2+(y-p)^2 < (q-1)^2  = '.' 
+    | (x-p)^2+(y-p)^2 < ((div (div z 2) 2)-1)^2  = ' '
+    | (x-p)^2+(y-p)^2 < (p-1)^2  = '.'         --- Äußerer Kreis, Subtraktion von p für den Rand um den Kreis
     | otherwise = '*'
         where p = div z 2  --- center point of circles (x & y same values becuase squared canvas)
-        --- where q = div (div z 2) 2
-    
-    
+
+
 
 {- Testbeispiele -}
 
-test1 = paintChars diag 60
-test2 = paintChars quad 60
-test3 = paintChars gitter 60
-test4 = paintChars rectangles 60
 test5 = paintChars circles 60
